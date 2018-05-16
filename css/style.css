@@ -1,0 +1,36 @@
+/*---------------Buttons--*/
+
+.button {
+    height: 300px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.hvr-border-fade:hover {
+    box-shadow: inset 0 0 0 4px black;
+}
+
+#red {
+    background-color: #ff4d4d;
+}
+
+#blue {
+    background-color: #0066ff;
+}
+
+#yellow {
+    background-color: #ffff66;
+}
+
+#green {
+    background-color: #00ff99;
+}
+
+/*---------------Media Queries--*/
+
+@media(max-width: 414px) {
+    .button {
+        height: 100px;
+    }
+}
