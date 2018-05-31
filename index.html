@@ -5,9 +5,10 @@
     <title>Memory Game</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
 
     </style>
 </head>
@@ -15,25 +16,43 @@
 <body>
     <header class="container-fluid">
         <div class="row">
-            <div class=" col-xs-8 text-center header">
+            <div class=" col-xs-10 text-center header">
                 <h2>The Memory Game</h2>
             </div>
         </div>
     </header>
 
     <section class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 button hvr-border-fade" id="red"></div>
-            <div class="col-xs-4 button hvr-border-fade" id="blue"></div>
-        </div>
-        
-        <div class="row"></div>
+        <div class="gamefield">
+            <div class="row">
+                <div class="col-xs-5 button" onClick="addToPlayer(this.id)" id="red"></div>
+                <div class="col-xs-5 button" onClick="addToPlayer(this.id)" id="blue"></div>
+            </div>
 
-        <div class="row">
-            <div class="col-xs-4 button hvr-border-fade" id="yellow"></div>
-            <div class="col-xs-4 button hvr-border-fade" id="green"></div>
+            <div class="row"></div>
+
+            <div class="row">
+                <div class="col-xs-5 button" onClick="addToPlayer(this.id)" id="yellow"></div>
+                <div class="col-xs-5 button" onClick="addToPlayer(this.id)" id="green"></div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-xs-10 btn-primary" onClick="newGame()" id="play-button">
+                <h2>PLAY</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h2>Level: </h2>
+            </div>
+            <div id="level-number" class="col-xs-6">
+                <h2>0</h2>
+            </div>
+        </div>
+
     </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
