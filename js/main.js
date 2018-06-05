@@ -3,9 +3,15 @@ var game = {
     count: 0,
     possibilities: ['#red', '#blue', '#yellow', '#green'],
     currentGame: [],
-    player: []
-
+    player: [],
+    name: []
 };
+
+
+function newGame() {
+
+    clearGame();
+}
 
 function clearGame() {
 
@@ -14,9 +20,23 @@ function clearGame() {
     addCount();
 }
 
-function newGame() {
+function addCount() {
 
-    clearGame();
+    game.count++;
+    $('#level-number').addClass('animated flash');
+
+    setTimeout(function() {
+        $('#level-number').removeClass('flash').html('<h2>' + game.count + '</h2>');
+    }, 200);
+
+    generateMove();
+}
+
+function generateMove() {
+
+    game.currentGame.push(game.possibilities[Math.floor(Math.random() * 4)]);
+
+    showMoves();
 }
 
 function showMoves() {
@@ -36,17 +56,17 @@ function showMoves() {
     clearPlayer();
 }
 
+function clearPlayer() {
+
+    game.player = [];
+}
+
 function playGame(field) {
 
     $(field).addClass('hvr-border-fade');
     setTimeout(function() {
         $(field).removeClass('hvr-border-fade');
     }, 300);
-}
-
-function clearPlayer() {
-
-    game.player = [];
 }
 
 function addToPlayer(id) {
@@ -76,7 +96,7 @@ function playerTurn() {
             if (check) {
 
                 if (game.count == 10) {
-                    
+
                     logScore(game.count);
                     alert('You won! Congratulations on beating the computer');
                 }
@@ -97,29 +117,23 @@ function nextLevel() {
     addCount();
 }
 
-function generateMove() {
-
-    game.currentGame.push(game.possibilities[Math.floor(Math.random() * 4)]);
-
-    showMoves();
-}
-
-function addCount() {
-
-    game.count++;
-    $('#level-number').addClass('animated flash');
-
-    setTimeout(function() {
-        $('#level-number').removeClass('flash').html('<h2>' + game.count + '</h2>');
-    }, 200);
-
-    generateMove();
-}
-
 function logScore(score) {
-    highScore.push({"score": score});
+    highScore.push({ "score": score });
     console.log(highScore);
     console.log(game);
+}
+
+function enterName() {
+
+    var name = prompt("Please enter your name below to start the game:");
+
+    if (name != null) {
+
+        game.name.push(name);
+    }
+    
+    newGame();
+
 }
 
 var highScore = [];
