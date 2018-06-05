@@ -15,29 +15,29 @@ function clearGame() {
 }
 
 function newGame() {
-    
+
     clearGame();
 }
 
 function showMoves() {
-    
-        var i = 0;
-        var moves = setInterval(function() {
-            
-            playGame(game.currentGame[i]);
-            i++;
-            
-            if (i >= game.currentGame.length) {
-                clearInterval(moves);
-            }
-            
-        }, 600);
-        
-        clearPlayer();
+
+    var i = 0;
+    var moves = setInterval(function() {
+
+        playGame(game.currentGame[i]);
+        i++;
+
+        if (i >= game.currentGame.length) {
+            clearInterval(moves);
+        }
+
+    }, 600);
+
+    clearPlayer();
 }
 
 function playGame(field) {
-    
+
     $(field).addClass('hvr-border-fade');
     setTimeout(function() {
         $(field).removeClass('hvr-border-fade');
@@ -45,12 +45,12 @@ function playGame(field) {
 }
 
 function clearPlayer() {
-    
+
     game.player = [];
 }
 
 function addToPlayer(id) {
-    
+
     var field = "#" + id;
     console.log(field);
     game.player.push(field);
@@ -58,29 +58,34 @@ function addToPlayer(id) {
 }
 
 function playerTurn() {
-    
-    if (game.player[game.player.length-1] !== game.currentGame[game.currentGame.length-1]) {
-        
-        alert('Wrong move! Try again');
-        showMoves();
-    }
-    
-    else {
-        
-        console.log('Good move!');
-        
-        var check = game.player.length === game.currentGame.length;
-        
-        if (check) {
-            
-            if (game.count == 5) {
-                alert('You won! Congratulations for beating the computer');
-            }
-            
-            else {
-                
-                alert('Next round!');
-                nextLevel();
+
+    if (game.currentGame.length == game.player.length) {
+        if (game.player[game.player.length - 1] !== game.currentGame[game.currentGame.length - 1]) {
+
+            logScore(game.count);
+            alert('Wrong move! Start again...');
+            newGame();
+        }
+
+        else {
+
+            console.log('Good move!');
+
+            var check = game.player.length === game.currentGame.length;
+
+            if (check) {
+
+                if (game.count == 10) {
+                    
+                    logScore(game.count);
+                    alert('You won! Congratulations on beating the computer');
+                }
+
+                else {
+
+                    alert('Next round!');
+                    nextLevel();
+                }
             }
         }
     }
@@ -88,25 +93,33 @@ function playerTurn() {
 
 
 function nextLevel() {
-    
+
     addCount();
 }
 
 function generateMove() {
-    
-    game.currentGame.push(game.possibilities[Math.floor(Math.random()*4)]);
-    
+
+    game.currentGame.push(game.possibilities[Math.floor(Math.random() * 4)]);
+
     showMoves();
 }
 
 function addCount() {
-   
+
     game.count++;
-        $('#level-number').addClass('animated flash');
+    $('#level-number').addClass('animated flash');
 
     setTimeout(function() {
         $('#level-number').removeClass('flash').html('<h2>' + game.count + '</h2>');
     }, 200);
-    
+
     generateMove();
 }
+
+function logScore(score) {
+    highScore.push({"score": score});
+    console.log(highScore);
+    console.log(game);
+}
+
+var highScore = [];
