@@ -3,10 +3,19 @@ var game = {
     count: 0,
     possibilities: ['#red', '#blue', '#yellow', '#green'],
     currentGame: [],
-    player: [],
-    name: []
+    player: []
 };
 
+var scoresArray = [];
+
+function init() {
+    if (localStorage.scoresRecord) {
+        
+        scoresArray = JSON.parse(localStorage.scoresRecord);
+        
+        console.log(scoresArray);
+    }
+}
 
 function newGame() {
 
@@ -26,7 +35,7 @@ function addCount() {
     $('#level-number').addClass('animated flash');
 
     setTimeout(function() {
-        $('#level-number').removeClass('flash').html('<h2>' + game.count + '</h2>');
+        $('#level-number').removeClass('flash').html('<h3>' + game.count + '</h3>');
     }, 200);
 
     generateMove();
@@ -82,8 +91,8 @@ function playerTurn() {
     if (game.currentGame.length == game.player.length) {
         if (game.player[game.player.length - 1] !== game.currentGame[game.currentGame.length - 1]) {
 
-            logScore(game.count);
-            alert('Wrong move! Start again...');
+            alert('Wrong move! Game over!');
+            logScore();
             newGame();
         }
 
@@ -95,10 +104,10 @@ function playerTurn() {
 
             if (check) {
 
-                if (game.count == 10) {
+                if (game.count == 20) {
 
-                    logScore(game.count);
-                    alert('You won! Congratulations on beating the computer');
+                    alert('You won! Congratulations on beating the computer.');
+                    logScore();
                 }
 
                 else {
@@ -117,23 +126,29 @@ function nextLevel() {
     addCount();
 }
 
-function logScore(score) {
-    highScore.push({ "score": score });
-    console.log(highScore);
-    console.log(game);
-}
 
-function enterName() {
 
-    var name = prompt("Please enter your name below to start the game:");
+function logScore() {
 
-    if (name != null) {
-
-        game.name.push(name);
-    }
+    var name = prompt("Please enter your name to add to the high scores list:");
     
-    newGame();
+    var score = game.count;
 
+    var scoreObj = { name: name, score: score };
+
+    scoresArray.push(scoreObj);
+
+    localStorage.scoresRecord = JSON.stringify(scoresArray);
+
+    var table = document.getElementById("score-table");
+    var row = table.insertRow();
+    var nameCell = row.insertCell(0);
+    var scoreCell = row.insertCell(1);
+
+    nameCell.innerHTML = name;
+    scoreCell.innerHTML = game.count;
 }
 
-var highScore = [];
+
+
+// https://www.youtube.com/watch?v=yzpxUB126YE
