@@ -8,12 +8,22 @@ var game = {
 
 var scoresArray = [];
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+
+today = dd + '/' + mm + '/' + yyyy;
+
 function init() {
     if (localStorage.scoresRecord) {
         
         scoresArray = JSON.parse(localStorage.scoresRecord);
         
-        console.log(scoresArray);
+        for (var i = 0; i < scoresArray.length; i++) {
+            
+            showHighScores(scoresArray[i].name, scoresArray[i].score, scoresArray[i].date);
+        }
     }
 }
 
@@ -133,22 +143,26 @@ function logScore() {
     var name = prompt("Please enter your name to add to the high scores list:");
     
     var score = game.count;
+    
+    var gameDate = today;
 
-    var scoreObj = { name: name, score: score };
+    var scoreObj = { name: name, score: score, date: gameDate };
 
     scoresArray.push(scoreObj);
 
     localStorage.scoresRecord = JSON.stringify(scoresArray);
+}
 
+    
+function showHighScores(name, score, gameDate) {
+    
     var table = document.getElementById("score-table");
     var row = table.insertRow();
     var nameCell = row.insertCell(0);
     var scoreCell = row.insertCell(1);
+    var dateCell = row.insertCell(2);
 
     nameCell.innerHTML = name;
-    scoreCell.innerHTML = game.count;
+    scoreCell.innerHTML = score;
+    dateCell.innerHTML = gameDate;
 }
-
-
-
-// https://www.youtube.com/watch?v=yzpxUB126YE
