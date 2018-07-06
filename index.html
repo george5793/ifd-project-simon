@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
 
+    <style type="text/css" media="screen">
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 12px;
+            font-family: Helvetica
+        }
+
+        #content {
+            display: inline-block;
+        }
+
+        #chart {
+            /*        margin: 10px;*/
+            /*        border: 1px solid #DDD;*/
+        }
+
+        line {
+            stroke: #777;
+        }
     </style>
 </head>
 
@@ -72,8 +93,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-xs-5" id="high-score-chart"></div>
     </div>
+   
+    <div id="high-score-chart"></div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -83,7 +105,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.js"></script>
     <script type="text/javascript" src="js/crossfilter.min.js"></script>
     <script type="text/javascript" src="js/dc.min.js"></script>
-    <script type="text/javascript" src="js/queue.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/graph.js"></script>
 </body>

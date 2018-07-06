@@ -35,6 +35,8 @@
     background-color: #00ff99;
 }
 
+line { stroke: #777; }
+
 /*---------------Media Queries--*/
 
 @media(max-width: 414px) {

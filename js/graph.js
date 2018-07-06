@@ -1,29 +1,28 @@
-queue()
-    .defer(d3.json, "scoresArray")
-    .await(makeGraph)
+var scoreData = JSON.parse(window.localStorage.getItem('scoresRecord'));
 
-function makeGraph(error, scoresData) {
+// queue()
+//     .defer(d3.json, "scoreData")
+//     .await(makeGraph);
 
-    var ndx = crossfilter(scoresData);
+// function makeGraph(error, scoreData) {
 
-    var name_dim = ndx.dimension(dc.pluck('name'));
-    var score_dim = ndx.dimension(dc.pluck('score'));
-    var date_dim = ndx.dimension(dc.pluck('date'));
+var ndx = crossfilter(scoreData);
 
-    dc.barChart("#high-score-chart")
-        .width(300)
-        .height(150)
-        .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-        .dimension(date_dim)
-        .group(score_dim)
-        .transitionDuration(500)
-        .x(d3.scale.ordinal())
-        .xUnits(dc.units.ordinal)
-        .xAxisLabel("Date")
-        .yAxisLabel("Score");
+var name_dim = ndx.dimension(dc.pluck('name'));
+var score_dim = ndx.dimension(dc.pluck('score'));
+var date_dim = ndx.dimension(dc.pluck('date'));
 
-    dc.renderAll();
-}
+dc.barChart("#chart")
+    .width(300)
+    .height(150)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(name_dim)
+    .group  (score_dim)
+    .transitionDuration(500)
+    .x(d3.scale.ordinal())
+    .xUnits(dc.units.ordinal)
+    .xAxisLabel("Name")
+    .yAxisLabel("Score");
 
-
-// investigate queue()
+dc.renderAll();
+// }

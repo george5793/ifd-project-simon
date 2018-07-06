@@ -149,8 +149,7 @@ function logScore() {
     var scoreObj = { name: name, score: score, date: gameDate };
 
     scoresArray.push(scoreObj);
-
-    localStorage.scoresRecord = JSON.stringify(scoresArray);
+    window.localStorage.setItem('scoresRecord', JSON.stringify(scoresArray));
 }
 
     
