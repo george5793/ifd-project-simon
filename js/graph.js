@@ -1,11 +1,5 @@
 var scoreData = JSON.parse(window.localStorage.getItem('scoresRecord'));
 
-// queue()
-//     .defer(d3.json, "scoreData")
-//     .await(makeGraph);
-
-// function makeGraph(error, scoreData) {
-
 var ndx = crossfilter(scoreData);
 
 var name_dim = ndx.dimension(dc.pluck('name'));
@@ -25,4 +19,3 @@ dc.barChart("#chart")
     .yAxisLabel("Score");
 
 dc.renderAll();
-// }
