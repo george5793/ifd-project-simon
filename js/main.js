@@ -96,6 +96,18 @@ function addToPlayer(id) {
     playerTurn();
 }
 
+function restartGame() {
+    
+    var playAgain = confirm("Would you like to play again?")
+    
+    if (playAgain == true) {
+        newGame();
+    }
+    else {
+        location.reload();
+    }
+}
+
 function playerTurn() {
 
     if (game.currentGame.length == game.player.length) {
@@ -103,7 +115,6 @@ function playerTurn() {
 
             alert('Wrong move! Game over!');
             logScore();
-            newGame();
         }
 
         else {
@@ -150,6 +161,7 @@ function logScore() {
 
     scoresArray.push(scoreObj);
     window.localStorage.setItem('scoresRecord', JSON.stringify(scoresArray));
+
 }
 
     

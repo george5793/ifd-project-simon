@@ -8,29 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
-
-    <style type="text/css" media="screen">
-        body {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            font-size: 12px;
-            font-family: Helvetica
-        }
-
-        #content {
-            display: inline-block;
-        }
-
-        #chart {
-            /*        margin: 10px;*/
-            /*        border: 1px solid #DDD;*/
-        }
-
-        line {
-            stroke: #777;
-        }
-    </style>
 </head>
 
 <body onload="init()">
@@ -49,7 +26,7 @@
                 <h3 id="level-number">0</h3>
             </div>
             <div class="col-xs-6">
-                <a href="scores.html" target="_blank">
+                <a href="high_scores.html" target="_blank">
                     <h3 class="info">High Scores</h3>
                 </a>
             </div>
@@ -77,25 +54,6 @@
         </div>
 
     </section>
-
-    <div class="row">
-        <div class="col-xs-5">
-            <table class="table table-bordered table-striped" id="score-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-   
-    <div id="chart"></div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
