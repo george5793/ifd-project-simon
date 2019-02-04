@@ -4,4 +4,4 @@ Use of Javascript, HTML and CSS to develop a memory game which asks the user to 
 
 Items left to implement:
 
-- Table of highscores
+- Table of high scores
